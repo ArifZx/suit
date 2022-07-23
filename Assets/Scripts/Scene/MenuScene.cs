@@ -35,6 +35,9 @@ public class MenuScene : MonoBehaviour
             if (_inputField != null && nickname != null && nickname.Length > 0)
             {
                 _inputField.text = nickname;
+            } else
+            {
+                _inputField.text = "Player-" + Random.Range(0, 99999);
             }
         }
         ShowMenu();
