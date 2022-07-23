@@ -1,1 +1,1 @@
-# Try game on https://suit.arifz.com
+# Demo https://suit.arifz.com
