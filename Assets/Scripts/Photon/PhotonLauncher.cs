@@ -7,7 +7,11 @@ public class PhotonLauncher : MonoBehaviourPunCallbacks
 
     public delegate void JoinRoomHandler(bool isSuccess);
 
+    public delegate void EstablisedConnectionHandler();
+
     public event JoinRoomHandler OnJoinEvent;
+
+    public event EstablisedConnectionHandler OnEstablisedConnection;
 
     private bool _isConnecting = false;
 
@@ -40,6 +44,11 @@ public class PhotonLauncher : MonoBehaviourPunCallbacks
     {
         Debug.Log("Photon is connected");
         _isConnecting = true;
+
+        if(OnEstablisedConnection != null)
+        {
+            OnEstablisedConnection();
+        }
     }
 
     public override void OnDisconnected(DisconnectCause cause)

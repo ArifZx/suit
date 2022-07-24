@@ -31,6 +31,13 @@ public class MenuScene : MonoBehaviour
         if (_launcher != null)
         {
             _launcher.Connect();
+
+            if (_playButton && !_launcher.IsConnecting)
+            {
+                _playButton.interactable = false;
+                _launcher.OnEstablisedConnection += OnEstablisedConnection;
+            }
+
             var nickname = _launcher.GetNickname();
             if (_inputField != null && nickname != null && nickname.Length > 0)
             {
@@ -98,6 +105,13 @@ public class MenuScene : MonoBehaviour
         }
 
         ShowLobby();
+    }
+
+    private void OnEstablisedConnection()
+    {
+        if (_playButton == null && _launcher == null) return;
+        _launcher.OnEstablisedConnection -= OnEstablisedConnection;
+        _playButton.interactable = true;
     }
 
 }
